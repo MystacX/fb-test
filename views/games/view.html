@@ -15,8 +15,10 @@
         <p class="text-right">
           <span class="label label-success">HUIDIG</span>
         </p>
-        <h5><span ng-model="game.estimate.title" contenteditable="true" no-line-breaks="true">{{game.estimate.title}}</span></h5>
-        <p><span ng-model="game.estimate.notes" contenteditable="true" placeholder="Klik om notities of beschrijving toe te voegen.">{{game.estimate.notes}}</span></p>
+        <h5><span ng-model="game.estimate.title" contenteditable="true"
+            no-line-breaks="true">{{game.estimate.title}}</span></h5>
+        <p><span ng-model="game.estimate.notes" contenteditable="true"
+            placeholder="Klik om notities of beschrijving toe te voegen.">{{game.estimate.notes}}</span></p>
       </div>
       <!-- Estimates -->
       <div class="well">
@@ -26,23 +28,26 @@
         <div id="estimate-results" ng-show="game.estimate.results">
           <ul class="list-inline">
             <li ng-repeat="result in game.estimate.results" class="list-item">
-              <div ng-show="showCards || result.user.id == fp.user.id" class="card text-center" href="#">{{result.points}}</div>
+              <div ng-show="showCards || result.user.id == fp.user.id" class="card text-center" href="#">
+                {{result.points}}</div>
               <div ng-hide="showCards || result.user.id == fp.user.id" class="card card-facedown">&nbsp;</div>
               <p class="text-center truncate">{{result.user.fullname}}</p>
             </li>
           </ul>
           <div ng-show="totalOfOnlineParticipants() > 1" id="player-counter">
-              <span ng-bind="game.estimate.results.length"></span> van <span ng-bind="totalOfOnlineParticipants()"></span> spelers
+            <span ng-bind="game.estimate.results.length"></span> van <span ng-bind="totalOfOnlineParticipants()"></span>
+            spelers
           </div>
           <div ng-show="totalOfOnlineParticipants() <= 1" id="player-counter">
-              Hey, je bent alleen. Dit is geen solitaire!
+            Hey, je bent alleen. Dit is geen solitaire!
           </div>
         </div>
       </div>
       <!-- Card deck -->
       <div ng-show="showCardDeck" class="well well-sm">
         <ul class="list-inline">
-          <li ng-repeat="card in decks[game.deck]"><a class="btn btn-default" href="" ng-click="estimate(card)">{{card}}</a></li>
+          <li ng-repeat="card in decks[game.deck]"><a class="btn btn-default" href=""
+              ng-click="estimate(card)">{{card}}</a></li>
         </ul>
       </div>
       <!-- Select an estimate -->
@@ -50,12 +55,16 @@
         <form class="form-inline" role="form">
           <div class="form-group col-md-2">
             <label class="sr-only" for="estimate-points">Schatting</label>
-            <input ng-show="showCards" ng-model="newEstimate.points" type="text" class="form-control input-small" id="estimate-points">
-            <input ng-hide="showCards" value="?" type="text" disabled="disabled" class="form-control input-small" id="estimate-points">
+            <input ng-show="showCards" ng-model="newEstimate.points" type="text" class="form-control input-small"
+              id="estimate-points">
+            <input ng-hide="showCards" value="?" type="text" disabled="disabled" class="form-control input-small"
+              id="estimate-points">
           </div>
           <button type="submit" class="btn btn-success" ng-click="acceptRound()">Accepteer de schatting</button>
-          <button type="submit" class="btn btn-primary" ng-click="playAgain()" ng-disabled="disablePlayAgainAndRevealButtons">Herstart</button>
-          <button type="submit" class="btn btn-primary" ng-click="revealCards()" ng-disabled="disablePlayAgainAndRevealButtons">Laat kaarten zien</button>
+          <button type="submit" class="btn btn-primary" ng-click="playAgain()"
+            ng-disabled="disablePlayAgainAndRevealButtons">Herstart</button>
+          <button type="submit" class="btn btn-primary" ng-click="revealCards()"
+            ng-disabled="disablePlayAgainAndRevealButtons">Laat kaarten zien</button>
           <button type="submit" class="btn btn-primary" ng-click="cancelRound()">Stop</button>
         </form>
       </div>
@@ -73,13 +82,15 @@
         <li><a href="#free-form" data-toggle="tab">Free-form</a></li>
         <li class="active"><a href="#structured" data-toggle="tab">Gestructureerd</a></li>
         <li><a href="#story-list" data-toggle="tab">Backlog</a>
-      </li></ul>
+        </li>
+      </ul>
       <div class="tab-content">
         <div class="tab-pane" id="free-form">
           <form name="formFreeForm" ng-submit="createStory('free-form')">
             <div class="form-group">
               <label for="free-form-story-title">Userstory</label>
-              <textarea ng-model="newStory.title" class="form-control" id="free-form-story-title" rows="3" required=""></textarea>
+              <textarea ng-model="newStory.title" class="form-control" id="free-form-story-title" rows="3"
+                required=""></textarea>
               <p class="help-block">Type of copy-paste je userstory als free-form tekst.</p>
             </div>
             <div class="form-group">
@@ -87,7 +98,7 @@
               <textarea ng-model="newStory.notes" class="form-control" id="free-form-story-notes" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success" ng-disabled="formFreeForm.$invalid">Voeg toe</button>
-             of <a href="#">Annuleren</a>
+            of <a href="#">Annuleren</a>
           </form>
         </div>
         <div class="tab-pane active" id="structured">
@@ -98,18 +109,20 @@
             </div>
             <div class="form-group">
               <label for="structured-story-i-would-like-to">Wil ik graag...</label>
-              <input ng-model="newStory.iWouldLikeTo" type="text" class="form-control" id="structured-story-i-would-like-to" required="">
+              <input ng-model="newStory.iWouldLikeTo" type="text" class="form-control"
+                id="structured-story-i-would-like-to" required="">
             </div>
             <div class="form-group">
               <label for="structured-story-so-that">Zodat...</label>
-              <input ng-model="newStory.soThat" type="text" class="form-control" id="structured-story-so-that" required="">
+              <input ng-model="newStory.soThat" type="text" class="form-control" id="structured-story-so-that"
+                required="">
             </div>
             <div class="form-group">
               <label for="structured-story-notes">Notities</label>
               <textarea ng-model="newStory.notes" class="form-control" id="structured-story-notes" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success" ng-disabled="formStructured.$invalid">Voeg toe</button>
-             of <a href="#">Annuleren</a>
+            of <a href="#">Annuleren</a>
           </form>
         </div>
         <div class="tab-pane" id="story-list">
@@ -158,13 +171,50 @@
           <li ng-repeat="participant in game.participants" ng-show="participant.online == true">
             {{participant.fullname}}
             <span ng-show="participant.id == game.owner.id">(moderator)</span>
-			      <span ng-show="participant.hasVoted == true" class="glyphicon glyphicon-ok text-success"></span>
+            <span ng-show="participant.hasVoted == true" class="glyphicon glyphicon-ok text-success"></span>
           </li>
         </ul>
       </div>
       <div class="vspace">
         <h5><b>Deel deze sessie:</b></h5>
-        <p>Kopieer het adres in de adresbalk en deel deze met je team.</p>
+        <a href="#" id="copy-link">Copy URL</a>
+        <script>
+          // Get a reference to the "Copy URL" link element
+          const copyLink = document.getElementById('copy-link');
+
+          // Add a click event listener to the link
+          copyLink.addEventListener('click', function (event) {
+            // Prevent the default link behavior
+            event.preventDefault();
+
+            // Get the current URL from the browser's address bar
+            const currentUrl = window.location.href;
+
+            // Create a temporary input element to copy the URL to the clipboard
+            const tempInput = document.createElement('input');
+            tempInput.value = currentUrl;
+            document.body.appendChild(tempInput);
+
+            // Select the URL text in the input element
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the selected text to the clipboard
+            document.execCommand('copy');
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Update the notification content and display it
+            notification.textContent = 'URL copied to clipboard: ' + currentUrl;
+            notification.style.display = 'block';
+
+            // Automatically hide the notification after 5 seconds (5000 milliseconds)
+            setTimeout(function () {
+                notification.style.display = 'none';
+            }, 5000);
+          });
+        </script>
       </div>
     </div>
   </div>

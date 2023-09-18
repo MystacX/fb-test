@@ -301,3 +301,16 @@ span:focus:hover {
     background-color: #FB6200;
     border-color: #FB6200
 }
+
+#notification {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}

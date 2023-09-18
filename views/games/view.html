@@ -177,7 +177,7 @@
       </div>
       <div class="vspace">
         <h5><b>Deel deze sessie:</b></h5>
-        <button id="copy-button">Copy URL</button>
+        <button id="copy-button" type="button">Copy URL</button>
 
         <!-- Notification element -->
         <div id="notification"></div>
@@ -193,21 +193,29 @@
 
             const currentUrl = window.location.href;
 
-            try {
-              // Use the Clipboard API to copy the URL to the clipboard
-              await navigator.clipboard.writeText(currentUrl);
+            // Create a temporary input element to copy the URL to the clipboard
+            const tempInput = document.createElement('input');
+            tempInput.value = currentUrl;
+            document.body.appendChild(tempInput);
 
-              // Update the notification content and display it
-              notification.textContent = 'URL copied to clipboard: ' + currentUrl;
-              notification.style.display = 'block';
+            // Select the URL text in the input element
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
 
-              // Automatically hide the notification after 5 seconds (5000 milliseconds)
-              setTimeout(function () {
-                notification.style.display = 'none';
-              }, 5000);
-            } catch (err) {
-              console.error('Failed to copy to clipboard: ', err);
-            }
+            // Copy the selected text to the clipboard
+            document.execCommand('copy');
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Update the notification content and display it
+            notification.textContent = 'URL copied to clipboard: ' + currentUrl;
+            notification.style.display = 'block';
+
+            // Automatically hide the notification after 5 seconds (5000 milliseconds)
+            setTimeout(function () {
+              notification.style.display = 'none';
+            }, 5000);
           });
         </script>
       </div>

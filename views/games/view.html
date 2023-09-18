@@ -177,18 +177,18 @@
       </div>
       <div class="vspace">
         <h5><b>Deel deze sessie:</b></h5>
-        <a href="#" id="copy-link">Copy URL</a>
+        <button id="copy-button">Copy URL</button>
 
         <!-- Notification element -->
         <div id="notification"></div>
 
         <script>
-          // Get references to the link and notification elements
-          const copyLink = document.getElementById('copy-link');
+          // Get references to the button and notification elements
+          const copyButton = document.getElementById('copy-button');
           const notification = document.getElementById('notification');
 
-          // Add a click event listener to the link
-          copyLink.addEventListener('click', async function (event) {
+          // Add a click event listener to the button
+          copyButton.addEventListener('click', async function (event) {
             event.preventDefault();
 
             const currentUrl = window.location.href;

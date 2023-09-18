@@ -178,16 +178,19 @@
       <div class="vspace">
         <h5><b>Deel deze sessie:</b></h5>
         <a href="#" id="copy-link">Copy URL</a>
+
+        <!-- Notification element -->
+        <div id="notification"></div>
+
         <script>
-          // Get a reference to the "Copy URL" link element
+          // Get references to the link and notification elements
           const copyLink = document.getElementById('copy-link');
+          const notification = document.getElementById('notification');
 
           // Add a click event listener to the link
           copyLink.addEventListener('click', function (event) {
-            // Prevent the default link behavior
             event.preventDefault();
 
-            // Get the current URL from the browser's address bar
             const currentUrl = window.location.href;
 
             // Create a temporary input element to copy the URL to the clipboard
@@ -211,7 +214,7 @@
 
             // Automatically hide the notification after 5 seconds (5000 milliseconds)
             setTimeout(function () {
-                notification.style.display = 'none';
+              notification.style.display = 'none';
             }, 5000);
           });
         </script>

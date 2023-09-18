@@ -188,17 +188,24 @@
           const notification = document.getElementById('notification');
 
           // Add a click event listener to the button
-          copyButton.addEventListener('click', async function (event) {
+          copyButton.addEventListener('click', function (event) {
             event.preventDefault();
 
             const currentUrl = window.location.href;
 
+            // Create a temporary input element to copy the URL to the clipboard
+            const tempInput = document.createElement('input');
+            tempInput.value = currentUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
             try {
-              // Use the Clipboard API to copy the URL to the clipboard
-              await navigator.clipboard.writeText(currentUrl);
+              // Copy the selected text to the clipboard
+              document.execCommand('copy');
 
               // Update the notification content and display it
-              notification.textContent = 'URL copied to clipboard: ' + currentUrl;
+              notification.textContent = 'URL naar het klembord gekopieerd: ' + currentUrl;
               notification.style.display = 'block';
 
               // Automatically hide the notification after 5 seconds (5000 milliseconds)
@@ -206,25 +213,10 @@
                 notification.style.display = 'none';
               }, 5000);
             } catch (err) {
-              console.error('Clipboard API not supported, falling back to execCommand:', err);
-
-              // Fallback for browsers that don't support Clipboard API
-              const tempInput = document.createElement('input');
-              tempInput.value = currentUrl;
-              document.body.appendChild(tempInput);
-              tempInput.select();
-              tempInput.setSelectionRange(0, 99999); // For mobile devices
-              document.execCommand('copy');
+              console.error('Kopiëren van URL naar klembord niet geslaagd: ', err);
+            } finally {
+              // Remove the temporary input element
               document.body.removeChild(tempInput);
-
-              // Update the notification content and display it
-              notification.textContent = 'URL copied to clipboard (fallback): ' + currentUrl;
-              notification.style.display = 'block';
-
-              // Automatically hide the notification after 5 seconds (5000 milliseconds)
-              setTimeout(function () {
-                notification.style.display = 'none';
-              }, 5000);
             }
           });
         </script>

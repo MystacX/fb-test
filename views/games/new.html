@@ -1,38 +1,38 @@
 <div class="row">
   <div class="col-md-offset-3 col-md-6">
-    <h1>Create a new game</h1>
-    <p>You can start inviting estimators after you have created the game.</p>
+    <h1>Creëer een nieuwe sessie</h1>
+    <p>Je kan deelnemers uitnodigen wanneer je de sessie gestart hebt.</p>
     <form name="form" ng-submit="createGame()" novalidate="">
       <div class="form-group">
-        <label for="fullname">Your name (what other team members will see)</label>
-        <input ng-model="fp.user.fullname" type="text" class="form-control" id="fullname" placeholder="Enter your name" required="">
+        <label for="fullname">Jouw naam (de naam die anderen zullen zien)</label>
+        <input ng-model="fp.user.fullname" type="text" class="form-control" id="fullname" placeholder="Vul je naam in" required="">
       </div>
       <div class="form-group">
-        <label for="name">Game name</label>
-        <input ng-model="newGame.name" type="text" class="form-control" id="name" placeholder="Enter game name" required="">
+        <label for="name">Sessienaam</label>
+        <input ng-model="newGame.name" type="text" class="form-control" id="name" placeholder="Vul sessienaam in" required="">
         <p class="help-block">For example: 'FirePoker project'</p>
       </div>
       <div class="form-group">
-        <label for="description">Game description (optional)</label>
-        <input ng-model="newGame.description" type="text" class="form-control" id="description" placeholder="Enter game description">
+        <label for="description">Sessie beschrijving (optioneel)</label>
+        <input ng-model="newGame.description" type="text" class="form-control" id="description" placeholder="Vul de beschrijving van de sessie in">
       </div>
       <div class="form-group">
-        <label for="stories">Import stories (optional, one per line)</label>
-        <textarea ng-model="newGame.stories" rows="10" class="form-control" id="stories" placeholder="Enter stories"></textarea>
-        <p class="help-block">Copy and paste to import stories into your game.</p>
+        <label for="stories">Importeer userstories (optioneel, een per lijn)</label>
+        <textarea ng-model="newGame.stories" rows="10" class="form-control" id="stories" placeholder="Vul userstories in"></textarea>
+        <p class="help-block">Copy/paste om userstories te importeren.</p>
       </div>
       <div class="form-group">
-        <label for="deck">Choose the set of estimate cards you want to use.</label>
+        <label for="deck">Kies welke set kaarten je wil gebruiken.</label>
         <select class="form-control" id="deck" ng-model="newGame.deck" required="">
           <option value="0">Scrum: 0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100 and ?</option>
           <option value="1">Fibonacci: 0, ½, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 and ?</option>
-          <option value="2">Sequential: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 and ?</option>
-          <option value="3">Hourly: 0, 4, 8, 16, 24, 32, 40, 60, 80, and ?</option>
+          <option value="2">Sequentieel: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 and ?</option>
+          <option value="3">Uren: 0, 4, 8, 16, 24, 32, 40, 60, 80, and ?</option>
           <option value="4">T-Shirt: XXS, XS, S, M, L, XL, XXL and ?</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Create game</button>
-       or <a href="#">Cancel</a>
+      <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Start sessie</button>
+       of <a href="#">Annuleren</a>
     </form>
   </div>
 </div>

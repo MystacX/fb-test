@@ -193,29 +193,39 @@
 
             const currentUrl = window.location.href;
 
-            // Create a temporary input element to copy the URL to the clipboard
-            const tempInput = document.createElement('input');
-            tempInput.value = currentUrl;
-            document.body.appendChild(tempInput);
+            try {
+              // Use the Clipboard API to copy the URL to the clipboard
+              await navigator.clipboard.writeText(currentUrl);
 
-            // Select the URL text in the input element
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); // For mobile devices
+              // Update the notification content and display it
+              notification.textContent = 'URL copied to clipboard: ' + currentUrl;
+              notification.style.display = 'block';
 
-            // Copy the selected text to the clipboard
-            document.execCommand('copy');
+              // Automatically hide the notification after 5 seconds (5000 milliseconds)
+              setTimeout(function () {
+                notification.style.display = 'none';
+              }, 5000);
+            } catch (err) {
+              console.error('Clipboard API not supported, falling back to execCommand:', err);
 
-            // Remove the temporary input element
-            document.body.removeChild(tempInput);
+              // Fallback for browsers that don't support Clipboard API
+              const tempInput = document.createElement('input');
+              tempInput.value = currentUrl;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              tempInput.setSelectionRange(0, 99999); // For mobile devices
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
 
-            // Update the notification content and display it
-            notification.textContent = 'URL copied to clipboard: ' + currentUrl;
-            notification.style.display = 'block';
+              // Update the notification content and display it
+              notification.textContent = 'URL copied to clipboard (fallback): ' + currentUrl;
+              notification.style.display = 'block';
 
-            // Automatically hide the notification after 5 seconds (5000 milliseconds)
-            setTimeout(function () {
-              notification.style.display = 'none';
-            }, 5000);
+              // Automatically hide the notification after 5 seconds (5000 milliseconds)
+              setTimeout(function () {
+                notification.style.display = 'none';
+              }, 5000);
+            }
           });
         </script>
       </div>
